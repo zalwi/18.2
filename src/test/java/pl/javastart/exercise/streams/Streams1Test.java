@@ -1,11 +1,11 @@
 package pl.javastart.exercise.streams;
 
-import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,8 +31,8 @@ public class Streams1Test {
 
         // then
         assertThat(filteredList.size(), is(2));
-        assertThat(filteredList, CoreMatchers.hasItem(12));
-        assertThat(filteredList, CoreMatchers.hasItem(124));
+        assertThat(filteredList, hasItem(12));
+        assertThat(filteredList, hasItem(124));
     }
 
     @Test public void shouldFilterOutNumberLowerThan20() {
@@ -53,10 +53,52 @@ public class Streams1Test {
 
         // then
         assertThat(filteredList.size(), is(4));
-        assertThat(filteredList, CoreMatchers.hasItem(123));
-        assertThat(filteredList, CoreMatchers.hasItem(124));
-        assertThat(filteredList, CoreMatchers.hasItem(21));
-        assertThat(filteredList, CoreMatchers.hasItem(71));
+        assertThat(filteredList, hasItem(123));
+        assertThat(filteredList, hasItem(124));
+        assertThat(filteredList, hasItem(21));
+        assertThat(filteredList, hasItem(71));
     }
+
+    @Test
+    public void shouldConvertTitlesToBooks() {
+        // given
+        List<String> titles = new ArrayList<>();
+        titles.add("Gra o tron");
+        titles.add("Dzieci z Bullerbyn");
+        titles.add("Robinson Cruzoe");
+        titles.add("Cyfrowa twierdza");
+        titles.add("Gra o życie");
+
+        // when
+        List<Book> books = streams.convertToBooks(titles);
+
+        // then
+        assertThat(books.size(), is(5));
+        assertThat(books, hasItem(new Book("Gra o tron")));
+        assertThat(books, hasItem(new Book("Dzieci z Bullerbyn")));
+        assertThat(books, hasItem(new Book("Robinson Cruzoe")));
+        assertThat(books, hasItem(new Book("Cyfrowa twierdza")));
+        assertThat(books, hasItem(new Book("Gra o życie")));
+    }
+
+    @Test
+    public void shouldConvertTitlesToBooksAndFilterOutStartingWithGra() {
+        // given
+        List<String> titles = new ArrayList<>();
+        titles.add("Gra o tron");
+        titles.add("Dzieci z Bullerbyn");
+        titles.add("Robinson Cruzoe");
+        titles.add("Cyfrowa twierdza");
+        titles.add("Gra o życie");
+
+        // when
+        List<Book> books = streams.convertToBooksAndReturnOnlyStartingWithGra(titles);
+
+        // then
+        assertThat(books.size(), is(2));
+        assertThat(books, hasItem(new Book("Gra o tron")));
+        assertThat(books, hasItem(new Book("Gra o życie")));
+    }
+
 
 }
