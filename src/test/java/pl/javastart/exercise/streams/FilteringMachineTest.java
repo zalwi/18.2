@@ -9,9 +9,9 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class Streams1Test {
+public class FilteringMachineTest {
 
-    private Streams1 streams = new Streams1();
+    private FilteringMachine machine = new FilteringMachine();
 
     @Test public void shouldFilterOutNotEvenNumbers() {
 
@@ -27,7 +27,7 @@ public class Streams1Test {
         numberList.add(71);
 
         // when
-        List<Integer> filteredList = streams.filterOutNotEvenNumbers(numberList);
+        List<Integer> filteredList = machine.filterOutNotEvenNumbers(numberList);
 
         // then
         assertThat(filteredList.size(), is(2));
@@ -49,7 +49,7 @@ public class Streams1Test {
         numberList.add(71);
 
         // when
-        List<Integer> filteredList = streams.filterOutLowerNumbersThan20(numberList);
+        List<Integer> filteredList = machine.filterOutLowerNumbersThan20(numberList);
 
         // then
         assertThat(filteredList.size(), is(4));
@@ -70,7 +70,7 @@ public class Streams1Test {
         titles.add("Gra o życie");
 
         // when
-        List<Book> books = streams.convertToBooks(titles);
+        List<Book> books = machine.convertToBooks(titles);
 
         // then
         assertThat(books.size(), is(5));
@@ -92,7 +92,7 @@ public class Streams1Test {
         titles.add("Gra o życie");
 
         // when
-        List<Book> books = streams.convertToBooksAndReturnOnlyStartingWithGra(titles);
+        List<Book> books = machine.convertToBooksAndReturnOnlyStartingWithGra(titles);
 
         // then
         assertThat(books.size(), is(2));

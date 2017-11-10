@@ -10,9 +10,9 @@ import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class Streams2Test {
+public class FilteringMachineTwoTest {
 
-    private Streams2 streams = new Streams2();
+    private FilteringMachineTwo machine = new FilteringMachineTwo();
     private List<Person> people;
 
     @Before
@@ -28,7 +28,7 @@ public class Streams2Test {
     @Test
     public void shouldReturnKidNames() {
         // when
-        List<String> kids = streams.findKidNames(people);
+        List<String> kids = machine.findKidNames(people);
 
         // then
         assertThat(kids.size(), is(2));
@@ -39,7 +39,7 @@ public class Streams2Test {
     @Test
     public void shouldConvertPeopleToUser() {
         // when
-        List<User> users = streams.convertPeopleToUsers(people);
+        List<User> users = machine.convertPeopleToUsers(people);
 
         // then
         assertThat(users.size(), is(5));
